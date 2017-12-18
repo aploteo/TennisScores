@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Tennis Scores</string>
+    <string name="player1">Player 1</string>
+    <string name="player2">Player 2</string>
+    <string name="set1">Set1</string>
+    <string name="set2">Set2</string>
+    <string name="set3">Set3</string>
+    <string name="game">Game</string>
+    <string name="points">Points</string>
+    <string name="zero">0</string>
+    <string name="point1">Point Player1</string>
+    <string name="point2">Point Player2</string>
+    <string name="beggining">Beginning of the match</string>
+    <string name="reset">Reset</string>
+</resources>

@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/title_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:gravity="center"
+            android:text="@string/app_name"
+            android:textColor="@color/colorPrimaryDark"
+            android:textSize="40sp" />
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center">
+
+            <TextView
+                style="@style/scoreboard_title_line"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="" />
+
+            <TextView
+                style="@style/scoreboard_title_line"
+                android:layout_width="30dp"
+                android:text="@string/set1" />
+
+            <TextView
+                style="@style/scoreboard_title_line"
+                android:layout_width="30dp"
+                android:text="@string/set2" />
+
+            <TextView
+                style="@style/scoreboard_title_line"
+                android:layout_width="30dp"
+                android:text="@string/set3" />
+
+            <TextView
+                style="@style/scoreboard_title_line"
+                android:layout_width="30dp"
+                android:text="@string/game" />
+
+            <TextView
+                style="@style/scoreboard_title_line"
+                android:layout_width="50dp"
+                android:text="@string/points" />
+        </LinearLayout>
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/Player1_score_row"
+                style="@style/scoreboard_lines_col1"
+                android:text="@string/player1" />
+
+            <TextView
+                android:id="@+id/set1_player1"
+                style="@style/scoreboard_lines_col2_4"
+                android:text="@string/zero" />
+
+            <TextView
+                android:id="@+id/set2_player1"
+                style="@style/scoreboard_lines_col2_4"
+                android:text="@string/zero" />
+
+            <TextView
+                android:id="@+id/set3_player1"
+                style="@style/scoreboard_lines_col2_4"
+                android:text="@string/zero" />
+
+            <TextView
+                android:id="@+id/game_player1"
+                style="@style/scoreboard_lines_col5"
+                android:text="@string/zero" />
+
+            <TextView
+                android:id="@+id/points_player1"
+                style="@style/scoreboard_lines_col6"
+                android:text="@string/zero" />
+
+        </LinearLayout>
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                style="@style/scoreboard_lines_col1"
+                android:text="@string/player2"
+                android:textColor="#FFFFFF" />
+
+            <TextView
+                android:id="@+id/set1_player2"
+                style="@style/scoreboard_lines_col2_4"
+                android:text="@string/zero" />
+
+            <TextView
+                android:id="@+id/set2_player2"
+                style="@style/scoreboard_lines_col2_4"
+                android:text="@string/zero" />
+
+            <TextView
+                android:id="@+id/set3_player2"
+                style="@style/scoreboard_lines_col2_4"
+                android:text="@string/zero" />
+
+            <TextView
+                android:id="@+id/game_player2"
+                style="@style/scoreboard_lines_col5"
+                android:text="@string/zero" />
+
+            <TextView
+                android:id="@+id/points_player2"
+                style="@style/scoreboard_lines_col6"
+                android:text="@string/zero" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/beggining"
+            android:textAlignment="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button1"
+                style="@style/button_style"
+                android:onClick="pointForPlayer1"
+                android:text="@string/point1" />
+
+            <Button
+                android:id="@+id/button2"
+                style="@style/button_style"
+                android:onClick="pointForPlayer2"
+                android:text="@string/point2" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="50dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:onClick="ace_player1"
+                android:text="+1" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="0"
+                android:textSize="36sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Aces"
+                android:textSize="36sp" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="0"
+                android:textSize="36sp" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:onClick="ace_player2"
+                android:text="+1" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:onClick="resetScoreBoard"
+        android:text="@string/reset" />
+
+</RelativeLayout>

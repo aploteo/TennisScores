@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity
     public static final String FAULT_PLAYER2 = "faultPlayer2";
     public static final String MESSAGE = "message";
 
-    int[][] setResults;
     String message = "Beginning of the match";
     int gamePlayer1;
     int gamePlayer2;
@@ -40,6 +39,7 @@ public class MainActivity extends AppCompatActivity
     int acePlayer2;
     int faultPlayer1;
     int faultPlayer2;
+
     TextView pointsPlayer1TextView;
     TextView pointsPlayer2TextView;
     TextView gamePlayer1TextView;
@@ -55,16 +55,18 @@ public class MainActivity extends AppCompatActivity
     TextView acePlayer2TextView;
     TextView faultPlayer1TextView;
     TextView faultPlayer2TextView;
+
     Button button1;
     Button button2;
     Button button3;
     Button button4;
     Button button5;
     Button button6;
+
     int indexPlayer1 = 0;
     int indexPlayer2 = 0;
     String[] playerPoints = {"0", "15", "30", "40"};
-
+    int[][] setResults;
     {
         setResults = new int[2][3];
     }
@@ -185,6 +187,9 @@ public class MainActivity extends AppCompatActivity
         gamePlayer2TextView.setText(String.valueOf(gamePlayer2));
     }
 
+    /**
+     * Reset scoreboard and all other counters.
+     */
     public void resetScoreBoard(View view)
     {
         indexPlayer1 = 0;
@@ -387,6 +392,10 @@ public class MainActivity extends AppCompatActivity
         message = savedInstanceState.getString(MESSAGE);
         updateMessage();
     }
+
+    /**
+     * Updates the message that appears in message TextView.
+     */
     public void updateMessage()
     {
         messageTextView = findViewById(R.id.message);

@@ -8,8 +8,8 @@
     <string name="game">Game</string>
     <string name="points">Points</string>
     <string name="zero">0</string>
-    <string name="point1">Point Player1</string>
-    <string name="point2">Point Player2</string>
+    <string name="point1">Player1</string>
+    <string name="point2">Player2</string>
     <string name="beginning">Beginning of the match</string>
     <string name="reset">Reset</string>
     <string name="plus">+</string>

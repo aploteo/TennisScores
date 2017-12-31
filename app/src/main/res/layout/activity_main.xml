@@ -4,10 +4,10 @@
     android:layout_height="wrap_content">
 
     <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:id="@+id/linearLayout">
+        android:orientation="vertical">
 
         <TextView
             android:id="@+id/title_text_view"
@@ -133,165 +133,182 @@
 
         <TextView
             android:id="@+id/message"
-            android:layout_width="match_parent"
+            android:layout_width="330dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginBottom="10dp"
             android:layout_marginEnd="16dp"
-            android:padding="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="20dp"
             android:background="#E3F2FD"
+            android:padding="8dp"
             android:text="@string/beginning"
             android:textAlignment="center"
-            android:textColor="@color/colorPrimary"
             android:textSize="20sp" />
 
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:orientation="horizontal">
+            android:background="#E3F2FD"
+            android:orientation="vertical">
 
-            <Button
-                android:id="@+id/button1"
-                style="@style/button_style"
-                android:onClick="pointForPlayer1"
-                android:text="@string/point1" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#E3F2FD"
+                android:gravity="center"
+                android:text="Points" />
 
-            <Button
-                android:id="@+id/button2"
-                style="@style/button_style"
-                android:onClick="pointForPlayer2"
-                android:text="@string/point2" />
+            <LinearLayout
+                android:layout_width="330dp"
+                android:layout_height="wrap_content"
+                android:background="#E3F2FD"
+                android:orientation="horizontal">
 
+                <Button
+                    android:id="@+id/button1"
+                    style="@style/button_style"
+                    android:layout_centerVertical="true"
+                    android:onClick="pointForPlayer1"
+                    android:text="@string/point1" />
+
+                <Button
+                    android:id="@+id/button2"
+                    style="@style/button_style"
+                    android:onClick="pointForPlayer2"
+                    android:text="@string/point2" />
+            </LinearLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="5dp"
+                android:background="#E3F2FD"
+                android:gravity="center"
+                android:text="Aces" />
+
+            <LinearLayout
+                android:layout_width="330dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="#E3F2FD"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/button3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="1"
+                    android:background="#BBDEFB"
+                    android:gravity="center"
+                    android:onClick="aceForPlayer1"
+                    android:text="@string/plus"
+                    android:textAlignment="center"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/aces_player1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="@string/zero"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:id="@+id/aces_player2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="@string/zero"
+                    android:textSize="30sp" />
+
+                <Button
+                    android:id="@+id/button4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
+                    android:background="#BBDEFB"
+                    android:gravity="center"
+                    android:onClick="aceForPlayer2"
+                    android:text="@string/plus"
+                    android:textSize="20sp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="5dp"
+                android:background="#E3F2FD"
+                android:gravity="center"
+                android:text="Faults" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/button5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#BBDEFB"
+                    android:gravity="center"
+                    android:onClick="faultForPlayer1"
+                    android:text="@string/plus"
+                    android:textAlignment="center"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/faults_player1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="@string/zero"
+                    android:textSize="30sp" />
+
+                <TextView
+                    android:id="@+id/faults_player2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:gravity="center"
+                    android:text="@string/zero"
+                    android:textSize="30sp" />
+
+                <Button
+                    android:id="@+id/button6"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="#BBDEFB"
+                    android:gravity="center"
+                    android:onClick="faultForPlayer2"
+                    android:text="@string/plus"
+                    android:textSize="20sp" />
+            </LinearLayout>
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="30dp"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/button3"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:background="#BBDEFB"
-                android:textAlignment="center"
-                android:gravity="center"
-                android:onClick="aceForPlayer1"
-                android:text="@string/plus"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/aces_player1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:gravity="center"
-                android:text="@string/zero"
-                android:textSize="30sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/aces"
-                android:textSize="30sp" />
-
-            <TextView
-                android:id="@+id/aces_player2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:gravity="center"
-                android:text="@string/zero"
-                android:textSize="30sp" />
-
-            <Button
-                android:id="@+id/button4"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:gravity="center"
-                android:onClick="aceForPlayer2"
-                android:background="#BBDEFB"
-                android:textSize="20sp"
-                android:text="@string/plus" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="20dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="30dp"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/button5"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:background="#BBDEFB"
-                android:textAlignment="center"
-                android:gravity="center"
-                android:onClick="faultForPlayer1"
-                android:text="@string/plus"
-                android:textSize="20sp" />
-
-            <TextView
-                android:id="@+id/faults_player1"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:gravity="center"
-                android:text="@string/zero"
-                android:textSize="30sp" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/faults"
-                android:textSize="30sp" />
-
-            <TextView
-                android:id="@+id/faults_player2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:gravity="center"
-                android:text="@string/zero"
-                android:textSize="30sp" />
-
-            <Button
-                android:id="@+id/button6"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:gravity="center"
-                android:onClick="faultForPlayer2"
-                android:background="#BBDEFB"
-                android:textSize="20sp"
-                android:text="@string/plus" />
-
-        </LinearLayout>
-
     </LinearLayout>
 
     <Button
+        android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:onClick="resetScoreBoard"
-        android:text="@string/reset"
-        android:id="@+id/button" />
+        android:text="@string/reset" />
 
 </RelativeLayout>

@@ -135,10 +135,10 @@
             android:id="@+id/message"
             android:layout_width="330dp"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginBottom="@dimen/message_up"
+            android:layout_marginEnd="@dimen/message_right"
+            android:layout_marginStart="@dimen/message_left"
+            android:layout_marginTop="@dimen/message_down"
             android:background="#E3F2FD"
             android:padding="8dp"
             android:text="@string/beginning"
@@ -157,7 +157,7 @@
                 android:layout_height="wrap_content"
                 android:background="#E3F2FD"
                 android:gravity="center"
-                android:text="Points" />
+                android:text="@string/points" />
 
             <LinearLayout
                 android:layout_width="330dp"
@@ -168,7 +168,6 @@
                 <Button
                     android:id="@+id/button1"
                     style="@style/button_style"
-                    android:layout_centerVertical="true"
                     android:onClick="pointForPlayer1"
                     android:text="@string/point1" />
 
@@ -187,7 +186,7 @@
                 android:layout_marginBottom="5dp"
                 android:background="#E3F2FD"
                 android:gravity="center"
-                android:text="Aces" />
+                android:text="@string/aces" />
 
             <LinearLayout
                 android:layout_width="330dp"
@@ -200,7 +199,7 @@
                     android:id="@+id/button3"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginStart="20dp"
                     android:layout_weight="1"
                     android:background="#BBDEFB"
                     android:gravity="center"
@@ -231,7 +230,7 @@
                     android:id="@+id/button4"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginRight="20dp"
+                    android:layout_marginEnd="20dp"
                     android:layout_weight="1"
                     android:background="#BBDEFB"
                     android:gravity="center"
@@ -248,7 +247,7 @@
                 android:layout_marginBottom="5dp"
                 android:background="#E3F2FD"
                 android:gravity="center"
-                android:text="Faults" />
+                android:text="@string/faults" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -307,7 +306,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
+        android:layout_centerHorizontal="true"
         android:onClick="resetScoreBoard"
         android:text="@string/reset" />
 

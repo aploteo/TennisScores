@@ -10,6 +10,9 @@
     <string name="zero">0</string>
     <string name="point1">Point Player1</string>
     <string name="point2">Point Player2</string>
-    <string name="beggining">Beginning of the match</string>
+    <string name="beginning">Beginning of the match</string>
     <string name="reset">Reset</string>
+    <string name="plus">+</string>
+    <string name="aces">Aces</string>
+    <string name="faults">Faults</string>
 </resources>

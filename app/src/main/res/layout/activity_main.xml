@@ -6,7 +6,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:id="@+id/linearLayout">
 
         <TextView
             android:id="@+id/title_text_view"
@@ -135,7 +136,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="@string/beggining"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:padding="8dp"
+            android:background="#E3F2FD"
+            android:text="@string/beginning"
             android:textAlignment="center"
             android:textColor="@color/colorPrimary"
             android:textSize="20sp" />
@@ -163,49 +168,118 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="50dp"
-            android:layout_marginStart="50dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="30dp"
             android:orientation="horizontal">
 
             <Button
+                android:id="@+id/button3"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="2"
+                android:background="#BBDEFB"
+                android:textAlignment="center"
                 android:gravity="center"
-                android:onClick="ace_player1"
-                android:text="+1" />
+                android:onClick="aceForPlayer1"
+                android:text="@string/plus"
+                android:textSize="20sp" />
 
             <TextView
+                android:id="@+id/aces_player1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:gravity="center"
-                android:text="0"
-                android:textSize="36sp" />
+                android:text="@string/zero"
+                android:textSize="30sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:gravity="center"
-                android:text="Aces"
-                android:textSize="36sp" />
+                android:text="@string/aces"
+                android:textSize="30sp" />
 
             <TextView
+                android:id="@+id/aces_player2"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_weight="2"
                 android:gravity="center"
-                android:text="0"
-                android:textSize="36sp" />
+                android:text="@string/zero"
+                android:textSize="30sp" />
 
             <Button
+                android:id="@+id/button4"
                 android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:onClick="aceForPlayer2"
+                android:background="#BBDEFB"
+                android:textSize="20sp"
+                android:text="@string/plus" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="30dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/button5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:background="#BBDEFB"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:onClick="faultForPlayer1"
+                android:text="@string/plus"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/faults_player1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="@string/zero"
+                android:textSize="30sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:onClick="ace_player2"
-                android:text="+1" />
+                android:text="@string/faults"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/faults_player2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="@string/zero"
+                android:textSize="30sp" />
+
+            <Button
+                android:id="@+id/button6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:onClick="faultForPlayer2"
+                android:background="#BBDEFB"
+                android:textSize="20sp"
+                android:text="@string/plus" />
 
         </LinearLayout>
 
@@ -217,6 +291,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:onClick="resetScoreBoard"
-        android:text="@string/reset" />
+        android:text="@string/reset"
+        android:id="@+id/button" />
 
 </RelativeLayout>

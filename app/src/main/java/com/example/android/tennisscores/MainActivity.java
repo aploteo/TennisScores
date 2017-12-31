@@ -8,6 +8,29 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity
 {
+    public static final String SET1_PLAYER_1 = "set1Player1";
+    public static final String SET1_PLAYER_2 = "set1Player2";
+    public static final String SET2_PLAYER_1 = "set2Player1";
+    public static final String SET2_PLAYER_2 = "set2Player2";
+    public static final String SET3_PLAYER_1 = "set3Player1";
+    public static final String SET3_PLAYER_2 = "set3Player2";
+    public static final String POINTS_PLAYER_1 = "pointsPlayer1";
+    public static final String POINTS_PLAYER_2 = "pointsPlayer2";
+    public static final String INDEX_PLAYER_1 = "indexPlayer1";
+    public static final String INDEX_PLAYER_2 = "indexPlayer2";
+    public static final String GAME_PLAYER_1 = "gamePlayer1";
+    public static final String GAME_PLAYER_2 = "gamePlayer2";
+    public static final String SET_BEING_PLAYED = "setBeingPlayed";
+    public static final String WON_SETS_PLAYER1 = "wonSetsPlayer1";
+    public static final String WON_SETS_PLAYER2 = "wonSetsPlayer2";
+    public static final String ACE_PLAYER1 = "acePlayer1";
+    public static final String ACE_PLAYER2 = "acePlayer2";
+    public static final String FAULT_PLAYER1 = "faultPlayer1";
+    public static final String FAULT_PLAYER2 = "faultPlayer2";
+    public static final String MESSAGE = "message";
+
+    int[][] setResults;
+    String message = "Beginning of the match";
     int gamePlayer1;
     int gamePlayer2;
     int setBeingPlayed = 1;
@@ -15,7 +38,8 @@ public class MainActivity extends AppCompatActivity
     int wonSetsPlayer2 = 0;
     int acePlayer1;
     int acePlayer2;
-
+    int faultPlayer1;
+    int faultPlayer2;
     TextView pointsPlayer1TextView;
     TextView pointsPlayer2TextView;
     TextView gamePlayer1TextView;
@@ -27,14 +51,23 @@ public class MainActivity extends AppCompatActivity
     TextView set2Player2TextView;
     TextView set3Player2TextView;
     TextView messageTextView;
-
+    TextView acePlayer1TextView;
+    TextView acePlayer2TextView;
+    TextView faultPlayer1TextView;
+    TextView faultPlayer2TextView;
     Button button1;
     Button button2;
-
+    Button button3;
+    Button button4;
+    Button button5;
+    Button button6;
     int indexPlayer1 = 0;
     int indexPlayer2 = 0;
-
     String[] playerPoints = {"0", "15", "30", "40"};
+
+    {
+        setResults = new int[2][3];
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -58,18 +91,20 @@ public class MainActivity extends AppCompatActivity
             gamePlayer1TextView.setText(String.valueOf(++gamePlayer1));
             if (gamePlayer1 >= 6 && gamePlayer1 - gamePlayer2 >= 2)
             {
+                setResults[0][setBeingPlayed - 1] = gamePlayer1;
+                setResults[1][setBeingPlayed - 1] = gamePlayer2;
                 updateGame();
                 setBeingPlayed++;
                 wonSetsPlayer1++;
-                messageTextView = findViewById(R.id.message);
-                messageTextView.setText(wonSetsPlayer1 + " - " + wonSetsPlayer2);
+                message = wonSetsPlayer1 + " - " + wonSetsPlayer2;
+                updateMessage();
             }
         }
         updatePoints();
         if (wonSetsPlayer1 == 2)
         {
-            messageTextView = findViewById(R.id.message);
-            messageTextView.setText("Player1 won by " + wonSetsPlayer1 + " sets to " + wonSetsPlayer2);
+            message = "Player1 won by " + wonSetsPlayer1 + " sets to " + wonSetsPlayer2;
+            updateMessage();
             disableButtons();
         }
     }
@@ -88,18 +123,20 @@ public class MainActivity extends AppCompatActivity
             gamePlayer2TextView.setText(String.valueOf(++gamePlayer2));
             if (gamePlayer2 >= 6 && gamePlayer2 - gamePlayer1 >= 2)
             {
+                setResults[0][setBeingPlayed - 1] = gamePlayer1;
+                setResults[1][setBeingPlayed - 1] = gamePlayer2;
                 updateGame();
                 setBeingPlayed++;
                 wonSetsPlayer2++;
-                messageTextView = findViewById(R.id.message);
-                messageTextView.setText(wonSetsPlayer1 + " - " + wonSetsPlayer2);
+                message = wonSetsPlayer1 + " - " + wonSetsPlayer2;
+                updateMessage();
             }
         }
         updatePoints();
         if (wonSetsPlayer2 == 2)
         {
-            messageTextView = findViewById(R.id.message);
-            messageTextView.setText("Player2 won by " + wonSetsPlayer2 + " sets to " + wonSetsPlayer1);
+            message = "Player2 won by " + wonSetsPlayer2 + " sets to " + wonSetsPlayer1;
+            updateMessage();
             disableButtons();
         }
     }
@@ -164,8 +201,14 @@ public class MainActivity extends AppCompatActivity
         enableButtons();
         wonSetsPlayer1 = 0;
         wonSetsPlayer2 = 0;
-        messageTextView = findViewById(R.id.message);
-        messageTextView.setText("New match");
+        message = "New match";
+        updateMessage();
+        acePlayer1 = 0;
+        acePlayer2 = 0;
+        updateAces();
+        faultPlayer1 = 0;
+        faultPlayer2 = 0;
+        updateFaults();
     }
 
     public void disableButtons()
@@ -174,6 +217,14 @@ public class MainActivity extends AppCompatActivity
         button1.setEnabled(false);
         button2 = findViewById(R.id.button2);
         button2.setEnabled(false);
+        button3 = findViewById(R.id.button3);
+        button3.setEnabled(false);
+        button4 = findViewById(R.id.button4);
+        button4.setEnabled(false);
+        button5 = findViewById(R.id.button5);
+        button5.setEnabled(false);
+        button6 = findViewById(R.id.button6);
+        button6.setEnabled(false);
     }
 
     public void enableButtons()
@@ -182,5 +233,163 @@ public class MainActivity extends AppCompatActivity
         button1.setEnabled(true);
         button2 = findViewById(R.id.button2);
         button2.setEnabled(true);
+        button3 = findViewById(R.id.button3);
+        button3.setEnabled(true);
+        button4 = findViewById(R.id.button4);
+        button4.setEnabled(true);
+        button5 = findViewById(R.id.button5);
+        button5.setEnabled(true);
+        button6 = findViewById(R.id.button6);
+        button6.setEnabled(true);
+    }
+
+    /**
+     * When button is pressed Player1's aces increase by 1.
+     */
+    public void aceForPlayer1(View view)
+    {
+        acePlayer1++;
+        updateAces();
+    }
+
+    /**
+     * When button is pressed Player2's aces increase by 1.
+     */
+    public void aceForPlayer2(View view)
+    {
+        acePlayer2++;
+        updateAces();
+    }
+
+    /**
+     * Updates aces scores for both players.
+     */
+    public void updateAces()
+    {
+        acePlayer1TextView = findViewById(R.id.aces_player1);
+        acePlayer1TextView.setText(String.valueOf(acePlayer1));
+        acePlayer2TextView = findViewById(R.id.aces_player2);
+        acePlayer2TextView.setText(String.valueOf(acePlayer2));
+    }
+
+    /**
+     * When button is pressed Player1's faults increase by 1.
+     */
+    public void faultForPlayer1(View view)
+    {
+        faultPlayer1++;
+        updateFaults();
+    }
+
+    /**
+     * When button is pressed Player1's faults increase by 1.
+     */
+    public void faultForPlayer2(View view)
+    {
+        faultPlayer2++;
+        updateFaults();
+    }
+
+    /**
+     * Updates fault scores for both players.
+     */
+    public void updateFaults()
+    {
+        faultPlayer1TextView = findViewById(R.id.faults_player1);
+        faultPlayer1TextView.setText(String.valueOf(faultPlayer1));
+        faultPlayer2TextView = findViewById(R.id.faults_player2);
+        faultPlayer2TextView.setText(String.valueOf(faultPlayer2));
+    }
+
+    /**
+     * Stores values for global variables between different Activities.
+     */
+    @Override
+    public void onSaveInstanceState(Bundle outState)
+    {
+        outState.putInt(SET1_PLAYER_1, setResults[0][0]);
+        outState.putInt(SET2_PLAYER_1, setResults[0][1]);
+        outState.putInt(SET3_PLAYER_1, setResults[0][2]);
+        outState.putInt(SET1_PLAYER_2, setResults[1][0]);
+        outState.putInt(SET2_PLAYER_2, setResults[1][1]);
+        outState.putInt(SET3_PLAYER_2, setResults[1][2]);
+        outState.putString(POINTS_PLAYER_1, playerPoints[indexPlayer1]);
+        outState.putString(POINTS_PLAYER_2, playerPoints[indexPlayer2]);
+        outState.putInt(INDEX_PLAYER_1, indexPlayer1);
+        outState.putInt(INDEX_PLAYER_2, indexPlayer2);
+        outState.putInt(GAME_PLAYER_1, gamePlayer1);
+        outState.putInt(GAME_PLAYER_2, gamePlayer2);
+        outState.putInt(SET_BEING_PLAYED, setBeingPlayed);
+        outState.putInt(WON_SETS_PLAYER1, wonSetsPlayer1);
+        outState.putInt(WON_SETS_PLAYER2, wonSetsPlayer2);
+        outState.putInt(ACE_PLAYER1, acePlayer1);
+        outState.putInt(ACE_PLAYER2, acePlayer2);
+        outState.putInt(FAULT_PLAYER1, faultPlayer1);
+        outState.putInt(FAULT_PLAYER2, faultPlayer2);
+        outState.putString(MESSAGE, message);
+
+        // call superclass to save any view hierarchy
+        super.onSaveInstanceState(outState);
+    }
+
+    /**
+     * Restores values for global variables between different Activities.
+     */
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState)
+    {
+        super.onRestoreInstanceState(savedInstanceState);
+
+        setResults[0][0] = savedInstanceState.getInt(SET1_PLAYER_1);
+        setResults[0][1] = savedInstanceState.getInt(SET2_PLAYER_1);
+        setResults[0][2] = savedInstanceState.getInt(SET3_PLAYER_1);
+        setResults[1][0] = savedInstanceState.getInt(SET1_PLAYER_2);
+        setResults[1][1] = savedInstanceState.getInt(SET2_PLAYER_2);
+        setResults[1][2] = savedInstanceState.getInt(SET3_PLAYER_2);
+
+        set1Player1TextView = findViewById(R.id.set1_player1);
+        set2Player1TextView = findViewById(R.id.set2_player1);
+        set3Player1TextView = findViewById(R.id.set3_player1);
+        set1Player1TextView.setText(String.valueOf(setResults[0][0]));
+        set2Player1TextView.setText(String.valueOf(setResults[0][1]));
+        set3Player1TextView.setText(String.valueOf(setResults[0][2]));
+
+        set1Player2TextView = findViewById(R.id.set1_player2);
+        set2Player2TextView = findViewById(R.id.set2_player2);
+        set3Player2TextView = findViewById(R.id.set3_player2);
+        set1Player2TextView.setText(String.valueOf(setResults[1][0]));
+        set2Player2TextView.setText(String.valueOf(setResults[1][1]));
+        set3Player2TextView.setText(String.valueOf(setResults[1][2]));
+
+        indexPlayer1 = savedInstanceState.getInt(INDEX_PLAYER_1);
+        indexPlayer2 = savedInstanceState.getInt(INDEX_PLAYER_2);
+        updatePoints();
+
+        gamePlayer1 = savedInstanceState.getInt(GAME_PLAYER_1);
+        gamePlayer2 = savedInstanceState.getInt(GAME_PLAYER_2);
+        gamePlayer1TextView = findViewById(R.id.game_player1);
+        gamePlayer1TextView.setText(String.valueOf(gamePlayer1));
+        gamePlayer2TextView = findViewById(R.id.game_player2);
+        gamePlayer2TextView.setText(String.valueOf(gamePlayer2));
+
+        setBeingPlayed = savedInstanceState.getInt(SET_BEING_PLAYED);
+        wonSetsPlayer1 = savedInstanceState.getInt(WON_SETS_PLAYER1);
+        wonSetsPlayer2 = savedInstanceState.getInt(WON_SETS_PLAYER2);
+
+        acePlayer1 = savedInstanceState.getInt(ACE_PLAYER1);
+        acePlayer2 = savedInstanceState.getInt(ACE_PLAYER2);
+        updateAces();
+
+        faultPlayer1 = savedInstanceState.getInt(FAULT_PLAYER1);
+        faultPlayer2 = savedInstanceState.getInt(FAULT_PLAYER2);
+        updateFaults();
+
+        message = savedInstanceState.getString(MESSAGE);
+        updateMessage();
+    }
+    public void updateMessage()
+    {
+        messageTextView = findViewById(R.id.message);
+        messageTextView.setText(message);
     }
 }

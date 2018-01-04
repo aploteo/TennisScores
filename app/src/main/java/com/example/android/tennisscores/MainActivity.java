@@ -77,6 +77,22 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
+
+        pointsPlayer1TextView = findViewById(R.id.points_player1);
+        pointsPlayer2TextView = findViewById(R.id.points_player2);
+        gamePlayer1TextView = findViewById(R.id.game_player1);
+        gamePlayer2TextView = findViewById(R.id.game_player2);
+        set1Player1TextView = findViewById(R.id.set1_player1);
+        set1Player2TextView = findViewById(R.id.set1_player2);
+        set2Player1TextView = findViewById(R.id.set2_player1);
+        set2Player2TextView = findViewById(R.id.set2_player2);
+        set3Player1TextView = findViewById(R.id.set3_player1);
+        set3Player2TextView = findViewById(R.id.set3_player2);
+        messageTextView = findViewById(R.id.message);
+        acePlayer1TextView = findViewById(R.id.aces_player1);
+        acePlayer2TextView = findViewById(R.id.aces_player2);
+        faultPlayer1TextView = findViewById(R.id.faults_player1);
+        faultPlayer2TextView = findViewById(R.id.faults_player2);
     }
 
     /**
@@ -89,7 +105,6 @@ public class MainActivity extends AppCompatActivity
         {
             indexPlayer1 = 0;
             indexPlayer2 = 0;
-            gamePlayer1TextView = findViewById(R.id.game_player1);
             gamePlayer1TextView.setText(String.valueOf(++gamePlayer1));
             if (gamePlayer1 >= 6 && gamePlayer1 - gamePlayer2 >= 2)
             {
@@ -121,7 +136,6 @@ public class MainActivity extends AppCompatActivity
         {
             indexPlayer1 = 0;
             indexPlayer2 = 0;
-            gamePlayer2TextView = findViewById(R.id.game_player2);
             gamePlayer2TextView.setText(String.valueOf(++gamePlayer2));
             if (gamePlayer2 >= 6 && gamePlayer2 - gamePlayer1 >= 2)
             {
@@ -148,9 +162,7 @@ public class MainActivity extends AppCompatActivity
      */
     public void updatePoints()
     {
-        pointsPlayer1TextView = findViewById(R.id.points_player1);
         pointsPlayer1TextView.setText(playerPoints[indexPlayer1]);
-        pointsPlayer2TextView = findViewById(R.id.points_player2);
         pointsPlayer2TextView.setText(playerPoints[indexPlayer2]);
     }
 
@@ -161,29 +173,21 @@ public class MainActivity extends AppCompatActivity
     {
         if (setBeingPlayed == 1)
         {
-            set1Player1TextView = findViewById(R.id.set1_player1);
             set1Player1TextView.setText(String.valueOf(gamePlayer1));
-            set1Player2TextView = findViewById(R.id.set1_player2);
             set1Player2TextView.setText(String.valueOf(gamePlayer2));
         } else if (setBeingPlayed == 2)
         {
-            set2Player1TextView = findViewById(R.id.set2_player1);
             set2Player1TextView.setText(String.valueOf(gamePlayer1));
-            set2Player2TextView = findViewById(R.id.set2_player2);
             set2Player2TextView.setText(String.valueOf(gamePlayer2));
         } else
         {
-            set3Player1TextView = findViewById(R.id.set3_player1);
             set3Player1TextView.setText(String.valueOf(gamePlayer1));
-            set3Player2TextView = findViewById(R.id.set3_player2);
             set3Player2TextView.setText(String.valueOf(gamePlayer2));
         }
 
         gamePlayer1 = 0;
-        gamePlayer1TextView = findViewById(R.id.game_player1);
         gamePlayer1TextView.setText(String.valueOf(gamePlayer1));
         gamePlayer2 = 0;
-        gamePlayer2TextView = findViewById(R.id.game_player2);
         gamePlayer2TextView.setText(String.valueOf(gamePlayer2));
     }
 
@@ -271,9 +275,7 @@ public class MainActivity extends AppCompatActivity
      */
     public void updateAces()
     {
-        acePlayer1TextView = findViewById(R.id.aces_player1);
         acePlayer1TextView.setText(String.valueOf(acePlayer1));
-        acePlayer2TextView = findViewById(R.id.aces_player2);
         acePlayer2TextView.setText(String.valueOf(acePlayer2));
     }
 
@@ -300,9 +302,7 @@ public class MainActivity extends AppCompatActivity
      */
     public void updateFaults()
     {
-        faultPlayer1TextView = findViewById(R.id.faults_player1);
         faultPlayer1TextView.setText(String.valueOf(faultPlayer1));
-        faultPlayer2TextView = findViewById(R.id.faults_player2);
         faultPlayer2TextView.setText(String.valueOf(faultPlayer2));
     }
 
@@ -352,16 +352,10 @@ public class MainActivity extends AppCompatActivity
         setResults[1][1] = savedInstanceState.getInt(SET2_PLAYER_2);
         setResults[1][2] = savedInstanceState.getInt(SET3_PLAYER_2);
 
-        set1Player1TextView = findViewById(R.id.set1_player1);
-        set2Player1TextView = findViewById(R.id.set2_player1);
-        set3Player1TextView = findViewById(R.id.set3_player1);
         set1Player1TextView.setText(String.valueOf(setResults[0][0]));
         set2Player1TextView.setText(String.valueOf(setResults[0][1]));
         set3Player1TextView.setText(String.valueOf(setResults[0][2]));
 
-        set1Player2TextView = findViewById(R.id.set1_player2);
-        set2Player2TextView = findViewById(R.id.set2_player2);
-        set3Player2TextView = findViewById(R.id.set3_player2);
         set1Player2TextView.setText(String.valueOf(setResults[1][0]));
         set2Player2TextView.setText(String.valueOf(setResults[1][1]));
         set3Player2TextView.setText(String.valueOf(setResults[1][2]));
@@ -372,9 +366,7 @@ public class MainActivity extends AppCompatActivity
 
         gamePlayer1 = savedInstanceState.getInt(GAME_PLAYER_1);
         gamePlayer2 = savedInstanceState.getInt(GAME_PLAYER_2);
-        gamePlayer1TextView = findViewById(R.id.game_player1);
         gamePlayer1TextView.setText(String.valueOf(gamePlayer1));
-        gamePlayer2TextView = findViewById(R.id.game_player2);
         gamePlayer2TextView.setText(String.valueOf(gamePlayer2));
 
         setBeingPlayed = savedInstanceState.getInt(SET_BEING_PLAYED);
@@ -398,7 +390,6 @@ public class MainActivity extends AppCompatActivity
      */
     public void updateMessage()
     {
-        messageTextView = findViewById(R.id.message);
         messageTextView.setText(message);
     }
 }

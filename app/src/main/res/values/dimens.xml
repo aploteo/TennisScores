@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="message_up">20dp</dimen>
+    <dimen name="message_up">10dp</dimen>
     <dimen name="message_down">10dp</dimen>
     <dimen name="message_left">16dp</dimen>
     <dimen name="message_right">16dp</dimen>

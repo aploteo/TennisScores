@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity
 
     int indexPlayer1 = 0;
     int indexPlayer2 = 0;
-    String[] playerPoints = {"0", "15", "30", "40"};
+    String[] playerPoints = {"0", "15", "30", "40", "Ad"};
     int[][] setResults;
     {
         setResults = new int[2][3];

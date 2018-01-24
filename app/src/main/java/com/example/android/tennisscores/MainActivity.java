@@ -2,6 +2,7 @@ package com.example.android.tennisscores;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -28,8 +29,12 @@ public class MainActivity extends AppCompatActivity
     public static final String FAULT_PLAYER1 = "faultPlayer1";
     public static final String FAULT_PLAYER2 = "faultPlayer2";
     public static final String MESSAGE = "message";
+    public static final String GAMETIE = "gameTie";
+    public static final String TIEPLAYER1 = "tiePlayer1";
+    public static final String TIEPLAYER2 = "tiePlayer2";
+    public static final String CALLERMETHOD = "callerMethod";
 
-    String message = "Beginning of the match";
+    String message = "Beginni of the ngmatch";
     int gamePlayer1;
     int gamePlayer2;
     int setBeingPlayed = 1;
@@ -65,8 +70,13 @@ public class MainActivity extends AppCompatActivity
 
     int indexPlayer1 = 0;
     int indexPlayer2 = 0;
-    String[] playerPoints = {"0", "15", "30", "40", "Ad"};
+    String[] playerPoints = {"0", "15", "30", "40"};
+    boolean gameTie;
+    int tiePlayer1 = 0;
+    int tiePlayer2 = 0;
+    int callerMethod = 0;
     int[][] setResults;
+
     {
         setResults = new int[2][3];
     }
@@ -100,22 +110,23 @@ public class MainActivity extends AppCompatActivity
      */
     public void pointForPlayer1(View view)
     {
-        indexPlayer1++;
+        if (gameTie)
+        {
+            callerMethod = 1;
+            untieGame();
+            return;
+        } else indexPlayer1++;
+
+        if (indexPlayer1 == 3 && indexPlayer2 == 3)
+        {
+            updatePoints();
+            gameTie = true;
+            return;
+        }
+
         if (indexPlayer1 == 4)
         {
-            indexPlayer1 = 0;
-            indexPlayer2 = 0;
-            gamePlayer1TextView.setText(String.valueOf(++gamePlayer1));
-            if (gamePlayer1 >= 6 && gamePlayer1 - gamePlayer2 >= 2)
-            {
-                setResults[0][setBeingPlayed - 1] = gamePlayer1;
-                setResults[1][setBeingPlayed - 1] = gamePlayer2;
-                updateGame();
-                setBeingPlayed++;
-                wonSetsPlayer1++;
-                message = wonSetsPlayer1 + " - " + wonSetsPlayer2;
-                updateMessage();
-            }
+            endOfGame(1);
         }
         updatePoints();
         if (wonSetsPlayer1 == 2)
@@ -126,13 +137,24 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    /**
-     * When button "point_player2" is pressed, Player2 score increases by 1 point.
-     */
-    public void pointForPlayer2(View view)
+    public void endOfGame(int callerMethod)
     {
-        indexPlayer2++;
-        if (indexPlayer2 == 4)
+        indexPlayer1 = 0;
+        indexPlayer2 = 0;
+        if (callerMethod == 1)
+        {
+            gamePlayer1TextView.setText(String.valueOf(++gamePlayer1));
+            if (gamePlayer1 >= 6 && gamePlayer1 - gamePlayer2 >= 2)
+            {
+                setResults[0][setBeingPlayed - 1] = gamePlayer1;
+                updateGame();
+                setBeingPlayed++;
+                wonSetsPlayer1++;
+                setResults[1][setBeingPlayed - 1] = gamePlayer2;
+                message = wonSetsPlayer1 + " - " + wonSetsPlayer2;
+                updateMessage();
+            }
+        } else
         {
             indexPlayer1 = 0;
             indexPlayer2 = 0;
@@ -147,6 +169,76 @@ public class MainActivity extends AppCompatActivity
                 message = wonSetsPlayer1 + " - " + wonSetsPlayer2;
                 updateMessage();
             }
+        }
+    }
+
+    private void untieGame()
+    {
+        if (callerMethod == 1)
+        {
+            tiePlayer1++;
+        } else tiePlayer2++;
+
+        if (tiePlayer1 - tiePlayer2 >= 2)
+        {
+            tiePlayer1 = 0;
+            tiePlayer2 = 0;
+            callerMethod = 0;
+            gameTie = false;
+            endOfGame(1);
+            updatePoints();
+            return;
+        } else if (tiePlayer2 - tiePlayer1 >= 2)
+        {
+            tiePlayer1 = 0;
+            tiePlayer2 = 0;
+            callerMethod = 0;
+            gameTie = false;
+            endOfGame(2);
+            updatePoints();
+            return;
+        }
+        if (callerMethod == 1 && tiePlayer1 != tiePlayer2)
+        {
+            pointsPlayer1TextView.setText("Ad");
+            pointsPlayer2TextView.setText("");
+        } else if (callerMethod == 2 && tiePlayer1 != tiePlayer2)
+        {
+            pointsPlayer1TextView.setText("");
+            pointsPlayer2TextView.setText("Ad");
+        } else
+        {
+            tiePlayer1 = 0;
+            tiePlayer2 = 0;
+            pointsPlayer1TextView.setText("40");
+            pointsPlayer2TextView.setText("40");
+        }
+        Log.v("MainActivity", "player 1: " + tiePlayer1);
+        Log.v("MainActivity", "player 2: " + tiePlayer2);
+    }
+
+    /**
+     * When button "point_player2" is pressed, Player2 score increases by 1 point.
+     */
+    public void pointForPlayer2(View view)
+    {
+        if (gameTie)
+        {
+            callerMethod = 2;
+            untieGame();
+            return;
+        } else indexPlayer2++;
+
+        if (indexPlayer1 == 3 && indexPlayer2 == 3)
+        {
+            updatePoints();
+            gameTie = true;
+            return;
+        }
+
+        if (indexPlayer2 == 4)
+        {
+            endOfGame(2);
         }
         updatePoints();
         if (wonSetsPlayer2 == 2)
@@ -318,8 +410,8 @@ public class MainActivity extends AppCompatActivity
         outState.putInt(SET1_PLAYER_2, setResults[1][0]);
         outState.putInt(SET2_PLAYER_2, setResults[1][1]);
         outState.putInt(SET3_PLAYER_2, setResults[1][2]);
-        outState.putString(POINTS_PLAYER_1, playerPoints[indexPlayer1]);
-        outState.putString(POINTS_PLAYER_2, playerPoints[indexPlayer2]);
+        outState.putString(POINTS_PLAYER_1, pointsPlayer1TextView.getText().toString());
+        outState.putString(POINTS_PLAYER_2, pointsPlayer2TextView.getText().toString());
         outState.putInt(INDEX_PLAYER_1, indexPlayer1);
         outState.putInt(INDEX_PLAYER_2, indexPlayer2);
         outState.putInt(GAME_PLAYER_1, gamePlayer1);
@@ -332,6 +424,10 @@ public class MainActivity extends AppCompatActivity
         outState.putInt(FAULT_PLAYER1, faultPlayer1);
         outState.putInt(FAULT_PLAYER2, faultPlayer2);
         outState.putString(MESSAGE, message);
+        outState.putBoolean(GAMETIE, gameTie);
+        outState.putInt(TIEPLAYER1, tiePlayer1);
+        outState.putInt(TIEPLAYER2, tiePlayer2);
+        outState.putInt(CALLERMETHOD, callerMethod);
 
         // call superclass to save any view hierarchy
         super.onSaveInstanceState(outState);
@@ -360,9 +456,11 @@ public class MainActivity extends AppCompatActivity
         set2Player2TextView.setText(String.valueOf(setResults[1][1]));
         set3Player2TextView.setText(String.valueOf(setResults[1][2]));
 
+        pointsPlayer1TextView.setText(savedInstanceState.getString(POINTS_PLAYER_1));
+        pointsPlayer2TextView.setText(savedInstanceState.getString(POINTS_PLAYER_2));
+
         indexPlayer1 = savedInstanceState.getInt(INDEX_PLAYER_1);
         indexPlayer2 = savedInstanceState.getInt(INDEX_PLAYER_2);
-        updatePoints();
 
         gamePlayer1 = savedInstanceState.getInt(GAME_PLAYER_1);
         gamePlayer2 = savedInstanceState.getInt(GAME_PLAYER_2);
@@ -383,6 +481,11 @@ public class MainActivity extends AppCompatActivity
 
         message = savedInstanceState.getString(MESSAGE);
         updateMessage();
+
+        gameTie = savedInstanceState.getBoolean(GAMETIE);
+        tiePlayer1 = savedInstanceState.getInt(TIEPLAYER1);
+        tiePlayer2 = savedInstanceState.getInt(TIEPLAYER2);
+        callerMethod = savedInstanceState.getInt(CALLERMETHOD);
     }
 
     /**

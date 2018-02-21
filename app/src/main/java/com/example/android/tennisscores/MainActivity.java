@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity
     public static final String TIEPLAYER2 = "tiePlayer2";
     public static final String CALLERMETHOD = "callerMethod";
 
-    String message = "Beginni of the ngmatch";
+    String message = "Beginning of the match";
     int gamePlayer1;
     int gamePlayer2;
     int setBeingPlayed = 1;
@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     /**
-     * When button "point_player1" is pressed Player1 score increases 1 point.
+     * When button "player1" is pressed Player1 score increases 1 point.
      */
     public void pointForPlayer1(View view)
     {
@@ -114,6 +114,11 @@ public class MainActivity extends AppCompatActivity
         {
             callerMethod = 1;
             untieGame();
+            if (wonSetsPlayer1 == 2)
+            {
+                message = "Player1 won by " + wonSetsPlayer1 + " sets to " + wonSetsPlayer2;
+                endOfMatch();
+            }
             return;
         } else indexPlayer1++;
 
@@ -128,12 +133,13 @@ public class MainActivity extends AppCompatActivity
         {
             endOfGame(1);
         }
+
         updatePoints();
+
         if (wonSetsPlayer1 == 2)
         {
             message = "Player1 won by " + wonSetsPlayer1 + " sets to " + wonSetsPlayer2;
-            updateMessage();
-            disableButtons();
+            endOfMatch();
         }
     }
 
@@ -147,17 +153,16 @@ public class MainActivity extends AppCompatActivity
             if (gamePlayer1 >= 6 && gamePlayer1 - gamePlayer2 >= 2)
             {
                 setResults[0][setBeingPlayed - 1] = gamePlayer1;
+                setResults[1][setBeingPlayed - 1] = gamePlayer2;
                 updateGame();
                 setBeingPlayed++;
                 wonSetsPlayer1++;
-                setResults[1][setBeingPlayed - 1] = gamePlayer2;
+
                 message = wonSetsPlayer1 + " - " + wonSetsPlayer2;
                 updateMessage();
             }
         } else
         {
-            indexPlayer1 = 0;
-            indexPlayer2 = 0;
             gamePlayer2TextView.setText(String.valueOf(++gamePlayer2));
             if (gamePlayer2 >= 6 && gamePlayer2 - gamePlayer1 >= 2)
             {
@@ -218,7 +223,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     /**
-     * When button "point_player2" is pressed, Player2 score increases by 1 point.
+     * When button "player2" is pressed, Player2 score increases by 1 point.
      */
     public void pointForPlayer2(View view)
     {
@@ -226,6 +231,11 @@ public class MainActivity extends AppCompatActivity
         {
             callerMethod = 2;
             untieGame();
+            if (wonSetsPlayer2 == 2)
+            {
+                message = "Player2 won by " + wonSetsPlayer2 + " sets to " + wonSetsPlayer1;
+                endOfMatch();
+            }
             return;
         } else indexPlayer2++;
 
@@ -240,13 +250,21 @@ public class MainActivity extends AppCompatActivity
         {
             endOfGame(2);
         }
+
         updatePoints();
+
         if (wonSetsPlayer2 == 2)
         {
             message = "Player2 won by " + wonSetsPlayer2 + " sets to " + wonSetsPlayer1;
-            updateMessage();
-            disableButtons();
+            endOfMatch();
         }
+
+    }
+
+    public void endOfMatch()
+    {
+        updateMessage();
+        disableButtons();
     }
 
     /**
